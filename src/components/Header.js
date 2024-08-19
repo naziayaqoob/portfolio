@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import NavBar from './NavBar';
-import { ReactComponent as LightIcon } from '../images/light.svg';
-import { ReactComponent as DarkIcon } from '../images/dark.svg';
+import HamburgerIcon from './HamburgerIcon';
 import { ReactComponent as DownloadIcon } from '../images/download.svg';
+import { ReactComponent as DarkIcon } from '../images/dark.svg';
 
 const Header = () => {
-    const [isOn, setIsOn] = useState(false);
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [time, setTime] = useState(new Date());
     const [weather, setWeather] = useState(null);
 
-    const toggleSwitch = () => setIsOn(!isOn);
+    const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
     useEffect(() => {
         const timer = setInterval(() => {
@@ -33,15 +33,6 @@ const Header = () => {
         fetchWeather();
     }, []);
 
-    useEffect(() => {
-        document.body.classList.toggle('dark-mode', isOn);
-        document.body.classList.toggle('light-mode', !isOn);
-
-        return () => {
-            document.body.classList.remove('dark-mode');
-            document.body.classList.remove('light-mode');
-        };
-    }, [isOn]);
 
     const formattedTime = new Intl.DateTimeFormat('en-US', {
         hour: '2-digit',
@@ -50,12 +41,16 @@ const Header = () => {
     }).format(time);
 
     return (
-        <header className="flex flex-col md:flex-row items-center justify-between text-center absolute left-0 right-0 top-0 py-6 px-4 md:px-8 z-10">
-            <div className="mb-4 md:mb-0">
-                👋 Hi, There
+        
+        <header className="flex flex-col lg:flex-row items-center justify-between text-center xl:absolute left-0 right-0 top-0 py-6 px-4 md:px-8 z-10">
+            <div className="flex items-center justify-between w-full lg:w-auto">
+                <div>
+                    👋 Hi, There
+                </div>
+                <HamburgerIcon isOpen={isMenuOpen} toggleMenu={toggleMenu} />
             </div>
-            <NavBar />
-            <div className="flex items-center mt-4 md:mt-0">
+            <NavBar isMenuOpen={isMenuOpen} />
+            <div className="flex items-center mt-4 lg:mt-0">
                 <div className="flex items-center">
                     {weather && (
                         <div className="flex items-center mr-4">
@@ -73,14 +68,10 @@ const Header = () => {
                     </div>
                 </div>
                 <div className="flex items-center justify-end">
-                    <div className="switch" data-ison={isOn} onClick={toggleSwitch}>
+                    <div className="switch">
                         <div className="handle flex items-center justify-center relative">
-                            <span className={`absolute ${isOn ? 'toggle-light' : 'toggle-dark'}`}>
-                                {isOn ? (
-                                    <LightIcon />
-                                ) : (
-                                    <DarkIcon />
-                                )}
+                            <span className={`absolute cursor-pointer`}>
+                                <DownloadIcon />
                             </span>
                         </div>
                     </div>

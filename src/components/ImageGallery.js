@@ -1,4 +1,3 @@
-// ImageGallery.js
 import React, { useEffect, useState, useCallback } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -6,6 +5,8 @@ import Lenis from '@studio-freight/lenis';
 import imagesLoaded from 'imagesloaded';
 import { useNavigate } from 'react-router-dom';
 import projects from '../data/projects';
+
+import { FaXTwitter } from "react-icons/fa6";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -95,18 +96,27 @@ const ImageGallery = () => {
     };
 
     const renderColumn = (columnProjects, colIndex) => (
-        <div className="hover-target column relative w-full flex flex-wrap flex-col will-change-transform" key={colIndex}>
+        <div 
+            className="hover-target column relative w-full flex flex-wrap flex-col will-change-transform" 
+            key={colIndex}
+        >
             {columnProjects.map((project, index) => (
-                <figure
-                    className="column__item group relative z-1 m-0 min-h-[414px]"
-                    key={index}
-                    onClick={() => handleProjectClick(project.id)}
-                >
-                    <div className="relative overflow-hidden w-full h-full">
-                        <img src={project.image} alt={project.title} />
-                        <img src={project.image} alt={project.title} />
-                    </div>
-                </figure>
+                <>
+                    <figure
+                        className="relative column__item group relative z-1 m-0 lg:min-h-[414px]"
+                        key={index}
+                        onClick={() => handleProjectClick(project.id)}
+                    >
+                        <div className="relative overflow-hidden w-full h-full">
+                            <img className="lg:absolute lg:top-0 lg:left-0 lg:transition-all lg:duration-500" src={project.image} alt={project.title} />
+                            <img className="lg:absolute lg:top-0 lg:left-0 lg:transition-all lg:duration-500 hidden lg:block" src={project.image} alt={project.title} />
+                        </div>
+
+                        <div className="column__text">
+                            <h2 className="text-2xl bold bg-white p-2 text-black">{project.name}</h2>
+                        </div>
+                    </figure>
+                </>
             ))}
         </div>
     );
@@ -115,15 +125,14 @@ const ImageGallery = () => {
         projects.slice(0, 5),
         projects.slice(5, 10),
     ];
-
     return (
         <div className={`projects-gallery container max-w-custom ${isLoaded ? '' : 'loading'}`}>
-            <div className="mb-16 mt-16">
-                <h2 className="text-2xl md:text-8xl animate-text-color font-bold mb-2 md:mb-8">
-                    My Work
+            <div className="flex flex-col md:flex-row mb-16 space-y-6 md:space-y-0 md:space-x-12">
+                <h2 className="text-6xl md:text-8xl animate-text-color font-bold">
+                    My <br /> Work
                 </h2>
-                <p className="text-base md:text-xl text-gray-700 flex items-center max-w-2xl">
-                    Deployed scalable travel, event, and telemedicine web and hybrid mobile apps using React SPA and PWA.
+                <p className="text-base md:text-xl text-gray-700 flex items-center">
+                    Deployed scalable travel, event and telemedicine web and hybrid mobile apps using React SPA and PWA.
                     Collaborated in 140+ projects with 50+ clients all around the world. I am also interested in data analytics and visualization.
                 </p>
             </div>

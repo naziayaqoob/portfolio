@@ -10,7 +10,6 @@ import Banner from './components/Banner';
 import Skills from './components/Skills';
 import Experience from './components/Experience';
 import CustomCursor from './components/CustomCursor';
-import Footer from './components/Footer';
 import ProjectDetails from './components/ProjectDetails';
 import ImageGallery from './components/ImageGallery';
 import Contact from './components/Contact';
@@ -72,7 +71,7 @@ const App = () => {
                 <section id="projects">
                   <ImageGallery setScrollPosition={setScrollPosition} />
                 </section>
-                <section id="experience" className="bg-gray-800">
+                <section id="experience" className="bg-gray-800" style={{backgroundColor: 'hsl(55, 97%, 85%)'}}>
                   <Experience />
                 </section>
               </main>

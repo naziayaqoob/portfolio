@@ -4,6 +4,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 import newstimesPreview from '../images/contact-bg.jpg';
 
+import { ReactComponent as PaperIcon } from '../images/paper.svg';
+
 const Experience = () => {
     const [openIndex, setOpenIndex] = useState(null);
 
@@ -50,44 +52,47 @@ const Experience = () => {
     };*/}
 
     return (
-        <div className="container max-w-custom text-white relative py-20 flex items-center justify-center">
-            <h2 className="absolute top-4 left-4 md:-left-20 uppercase opacity-5 text-left font-bold text-4xl md:text-9xl">Professional Experience</h2>
-            
-            <ul className="relative p-0 z-10 max-w-2xl space-y-10 md:ml-[150px] border-l border-solid border-current pt-[50px] experience-list">
-                {experiences.map((exp, index) => (
-                    <li 
-                        key={index} 
-                        className="relative pl-8"
-                    >
+        <>
+            <div className="overflow-hidden">
+                <PaperIcon className="w-full rotate-180 -mt-1"/>
+            </div>
 
-                        <div className="relative">
-                            <span className="w-8 h-8 bg-cyan-400 rounded flex items-center justify-center text-white text-lg absolute">
-                                {exp.icon}
-                            </span>
-                            <div className="ml-12 w-full">
-                                <div className="cursor-pointer" >
-                                    <h3  className="text-xl font-semibold">
-                                        {exp.title} <span className="text-xs font-light">{exp.period}</span>
-                                    </h3>
-                                    <p className="mt-1 italic text-xs font-light">{exp.company}</p>
+            <div className="container max-w-custom relative py-20 flex items-center justify-center">
+                <h2 className="absolute top-6 left-4 md:-left-20 uppercase opacity-5 text-center md:text-left font-bold text-4xl md:text-9xl">Professional Experience</h2>
+                
+                <ul className="relative p-0 z-10 max-w-2xl space-y-10 md:ml-[150px] border-l border-solid border-current pt-[50px] experience-list">
+                    {experiences.map((exp, index) => (
+                        <li key={index} className="relative pl-8">
+
+                            <div className="relative">
+                                <span className="w-8 h-8 bg-purpleCustom rounded flex items-center justify-center text-lg absolute text-white">
+                                    {exp.icon}
+                                </span>
+                                <div className="ml-12">
+                                    <div className="cursor-pointer" >
+                                        <h3  className="text-xl font-semibold">
+                                            {exp.title} <span className="text-xs font-light">{exp.period}</span>
+                                        </h3>
+                                        <p className="mt-1 italic text-xs font-light">{exp.company}</p>
+                                    </div>
+
+                                    <AnimatePresence>
+                                            <motion.div
+                                                initial={{ opacity: 0, height: 0 }}
+                                                animate={{ opacity: 1, height: 'auto' }}
+                                                exit={{ opacity: 0, height: 0 }}
+                                                transition={{ duration: 0.3 }}
+                                            >
+                                                <p className="mt-2 text-sm font-light">{exp.responsibilities}</p>
+                                            </motion.div>
+                                    </AnimatePresence>
                                 </div>
-
-                                <AnimatePresence>
-                                        <motion.div
-                                            initial={{ opacity: 0, height: 0 }}
-                                            animate={{ opacity: 1, height: 'auto' }}
-                                            exit={{ opacity: 0, height: 0 }}
-                                            transition={{ duration: 0.3 }}
-                                        >
-                                            <p className="mt-2 text-sm font-light">{exp.responsibilities}</p>
-                                        </motion.div>
-                                </AnimatePresence>
                             </div>
-                        </div>
-                    </li>
-                ))}
-            </ul>
-        </div>
+                        </li>
+                    ))}
+                </ul>
+            </div>
+        </>
     );
 };
 

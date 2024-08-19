@@ -18,7 +18,7 @@ const ProjectDetails = () => {
   }
   
   return (
-    <div className="flex flex-col min-h-screen bg-gray-900 text-white">
+    <div className="flex md:flex-col min-h-screen bg-gray-900 text-white">
       <div className="single-image-container">
         <motion.img
           src={project.detailImage}

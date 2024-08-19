@@ -11,9 +11,11 @@ import { SiTailwindcss, SiRedux, SiJquery } from 'react-icons/si';
 import { DiW3C, DiResponsive } from 'react-icons/di';
 import { VscVscode } from 'react-icons/vsc';
 
+import Lamp from './Lamp';
+
 const SkillIcon = ({ name, icon }) => (
     <div className="group text-md">
-        <span className="flex items-center justify-center px-4 py-2 bg-white text-dark border border-gray-300 rounded-full 
+        <span className="flex items-center justify-center px-4 py-2 bg-white border border-gray-300 rounded-full 
             hover:bg-transparent hover:text-white transition-transform transform hover:scale-110 
             hover:shadow-lg">
             {icon}&nbsp;{name}
@@ -67,14 +69,14 @@ const Skills = () => {
     );
 
     return (
-        <div className="skills-section mx-auto h-screen">
-            <div className="container max-w-custom flex flex-col justify-center items-center h-full">
+        <div className="container relative max-w-custom rounded-md p-8 md:p-16 my-8 overflow-hidden md:overflow-visible " style={{backgroundColor: 'var(--skills-bg)'}}>
+            <div className="max-w-4xl">
                 <div className='skills-head text-white max-w-2xl mb-6 md:mb-12 mr-auto'>
                     <h1 className="text-2xl md:text-5xl font-bold uppercase mb-4">Things I Can Do</h1>
                     <p className="text-base md:text-lg">Choose from a variety of beautifully designed micro interactions, including animations, buttons, link effects, and more.</p>
                 </div>
                 
-                <div className="flex flex-wrap justify-end items-center" ref={main}>
+                <div className="flex flex-wrap md:justify-start items-center" ref={main}>
                     {skills.map((skill, index) => (
                         <div key={index} className="mt-4 mr-4">
                         <SkillIcon name={skill.name} icon={skill.icon} />
@@ -82,6 +84,8 @@ const Skills = () => {
                     ))}
                 </div>
             </div>
+
+            <Lamp />
         </div>
     );
 };

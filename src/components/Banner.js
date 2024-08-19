@@ -1,10 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import gsap from 'gsap';
-
 import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { loadSlim } from "@tsparticles/slim";
-
-import Lamp from './Svg';
 import close19 from '../images/A851688A-1813-44FD-8696-827E282F36B5.JPG';
 
 const Banner = () => {
@@ -45,101 +42,71 @@ const Banner = () => {
     };
 
     return (
-        <div className="relative h-screen">
-            { init &&
+        <div className="relative xl:h-screen">
+            {init && (
                 <Particles
                     id="tsparticles"
-                    className="absolute inset-x-0 inset-y-0 width-full height-full z-0"
+                    className="absolute inset-0 w-full h-full z-0"
                     particlesLoaded={particlesLoaded}
                     options={{
+                        autoPlay: true,
                         fullScreen: {
                             enable: false,
                             zIndex: -1,
                         },
+                        detectRetina: true,
                         interactivity: {
                             events: {
                                 onClick: {
                                     enable: true,
                                     mode: "push",
                                 },
-                                onHover: {
+                                resize: {
                                     enable: true,
-                                    mode: "repulse",
                                 },
-                                resize: true,
                             },
                             modes: {
                                 push: {
-                                    quantity: 4,
-                                },
-                                repulse: {
-                                    distance: 200,
-                                    duration: 0.4,
+                                    quantity: 10,
                                 },
                             },
                         },
                         particles: {
                             color: {
-                                value: ["#ffffff", "#ff0000", "#00ff00", "#4c3a69"],
-                            },
-                            links: {
-                                color: "#fff",
-                                distance: 120,
-                                enable: true,
-                                opacity: 0.7,
-                                width: 1,
+                                value: "#fff",
                             },
                             move: {
-                                direction: "none",
+                                direction: "top",
                                 enable: true,
                                 outModes: {
-                                    default: "bounce",
+                                    default: "out",
                                 },
-                                random: true,
-                                speed: 2,
-                                straight: false,
+                                speed: 0.5,
+                                straight: true,
                             },
                             number: {
-                                density: {
-                                    enable: true,
-                                    area: 800,
-                                },
-                                value: 350,
+                                value: 500,
                             },
                             opacity: {
-                                value: 0.2,
+                                value: { min: 0.1, max: 1 },
                             },
                             shape: {
-                                type: ["circle", "triangle", "custom"],
-                                options: {
-                                    custom: [
-                                        {
-                                            shape: [
-                                                "M 0 0 L 10 0 L 5 10 Z",
-                                                "M 0 0 Q 5 10 10 0 T 20 0" 
-                                            ],
-                                            fill: true
-                                        },
-                                        {
-                                            shape: "M 10 0 L 0 10 L 10 20 L 20 10 Z",
-                                            fill: true
-                                        }
-                                    ]
-                                }
+                                type: "circle",
                             },
                             size: {
-                                value: { min: 1, max: 5 },
+                                value: { min: 1, max: 2.5 },
                             },
                         },
-                        detectRetina: true,
                     }}
                 />
-            }
+            )}
 
-            <Lamp />
 
-            <div className="container max-w-custom text-center flex flex-col md:flex-row justify-between items-center">
-                <div className="flex-1 pl-6 pr-14 flex items-center flex-col justify-center max-w-3xl relative h-screen" style={{ top: '50px' }}>
+            <div className="container max-w-custom text-center flex flex-col xl:flex-row justify-center items-center h-full space-y-8 xl:space-x-8">
+                <div className="lg:w-1/2">
+                    <img className="banner-img" src={close19} alt="" />
+                </div>
+                <div className="flex relative items-center justify-center max-w-3xl">
                     <div>
                         <h1 ref={textRef} className="text-xl md:text-5xl font-bold mb-6">.</h1>
                         <p ref={paragraphRef} className="mb-4 text-sm md:text-lg">
@@ -150,11 +117,7 @@ const Banner = () => {
                         </p>
                     </div>
                 </div>
-                <div className="flex-1 md:flex-none md:w-1/3 p-4 border-2 border-gray-400" style={{ borderWidth: '6px', padding: '15px' }}>
-                    <img src={close19} alt="" />
-                </div>
             </div>
-
         </div>
     );
 };
