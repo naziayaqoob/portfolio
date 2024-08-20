@@ -54,7 +54,7 @@ const Skills = () => {
         const boxes = gsap.utils.toArray('.group');
         boxes.forEach((box) => {
           gsap.to(box, {
-            x: 100,
+            x: 50,
             rotation: 5,
             scrollTrigger: {
               trigger: box,

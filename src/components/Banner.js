@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { loadSlim } from "@tsparticles/slim";
-import close19 from '../images/A851688A-1813-44FD-8696-827E282F36B5.JPG';
+import close19 from '../images/me.JPG';
 
 const Banner = () => {
     const [init, setInit] = useState(false);

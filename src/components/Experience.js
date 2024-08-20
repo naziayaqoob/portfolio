@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import { FaBriefcase, FaRegEdit, FaRegHeart, FaLaptopCode, FaCode } from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion';
 
-import newstimesPreview from '../images/contact-bg.jpg';
-
 import { ReactComponent as PaperIcon } from '../images/paper.svg';
 
 const Experience = () => {
